@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>List of Persons</title>
+    <!-- connecting to redux library -->
+    <script src="https://cdn.jsdelivr.net/npm/redux@4.2.1/dist/redux.min.js"></script>
+</head>
+
+<body>
+    <h1>Persons List</h1>
+    <div id="persons-list"></div>
+
+    <script>
+        // Action creators
+        function addPerson(id, name, age) {
+            return {
+                type: "ADD",
+                personData: { id, name, age }
+            };
+        }
+
+        function removePerson(id) {
+            return {
+                type: "REMOVE",
+                personId: id
+            };
+        }
+
+        // Reducer
+        const initialState = { persons: [] };
+
+        function reducer(state = initialState, action) {
+            switch (action.type) {
+                case "ADD":
+                    const newPerson = action.personData;
+                    return { ...state, persons: state.persons.concat(newPerson) };
+                case "REMOVE":
+                    return {
+                        ...state,
+                        persons: state.persons.filter(p => p.id !== action.personId)
+                    };
+                default:
+                    return state;
+            }
+        }
+
+        // Create store
+        const store = Redux.createStore(reducer);
+
+        // Function to render persons list to the page
+        function render() {
+            const state = store.getState();
+            const container = document.getElementById("persons-list");
+            if (state.persons.length === 0) {
+                container.innerHTML = "<p>No persons found.</p>";
+                return;
+            }
+
+            const listItems = state.persons
+                .map(p => `<li>${p.name} (Age: ${p.age}, ID: ${p.id})</li>`)
+                .join("");
+
+            container.innerHTML = `<ul>${listItems}</ul>`;
+        }
+
+        // Subscribe render function to store updates
+        store.subscribe(render);
+
+        // Dispatch some actions
+        store.dispatch(addPerson(1, "Greg", 5));
+        store.dispatch(addPerson(2, "Carol", 3));
+        store.dispatch(addPerson(3, "Gabriel", 6));
+        store.dispatch(addPerson(4, "Fred", 8));
+        store.dispatch(removePerson(4));
+    </script>
+</body>
+
+</html>
