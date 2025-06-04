@@ -1,0 +1,55 @@
+/* Counter.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom right, #ffe6f7, #e0f7ff);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.counter-container {
+  text-align: center;
+  margin-top: 80px;
+  padding: 30px;
+  background: #fff0fa;
+  border-radius: 30px;
+  width: 80%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
+  border: 2px dashed #ffb6c1;
+}
+
+.title {
+  color: #ff69b4;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.count-text {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.count-number {
+  font-weight: bold;
+  color: #d63384;
+}
+
+.cute-button {
+  background-color: #ffc0cb;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 8px rgba(255, 105, 180, 0.3);
+}
+
+.cute-button:hover {
+  background-color: #ff69b4;
+  transform: scale(1.05);
+}
